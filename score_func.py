@@ -5,7 +5,7 @@ def hyvarinen_score(X, distribution_params):
         For simplicity, assume a Gaussian distribution and use a basic approximation.
     """
     mu, sigma = distribution_params
-    score = -((X - mu) ** 2) / (2 * sigma ** 2) + 1 / sigma ** 2
+    score = ((X - mu) ** 2) / (2 * sigma ** 2) - 1 / sigma ** 2
     return score
 
 def rscusum(data_stream, p_infinity_params, q1_params, lambda_, threshold):
@@ -36,6 +36,6 @@ data_stream = np.random.randn(1000)  # Random data simulating pre-change scenari
 p_infinity_params = (0, 1)  # Mean 0, variance 1 (standard normal distribution)
 q1_params = (0.5, 1.5)  # Slightly different parameters for Q1
 lambda_ = 0.5
-threshold = 5
+threshold = 2
 
 rscusum(data_stream, p_infinity_params, q1_params, lambda_, threshold)
