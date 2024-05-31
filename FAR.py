@@ -26,23 +26,21 @@ def rscusum_TF(data_stream, p_infinity_params, q1_params, lambda_, threshold):
         z = max(z + z_lambda, 0)  # Ensure z stays non-negative
         time += 1
         if z >= threshold:
-            print(f"Change detected at time {time} with score {z}")
             return True
     else:
         return False
     
 
-data_stream = np.random.randn(1000)  # Random data simulating pre-change scenario
-
 p_infinity_params = (0, 1)  # Mean 0, variance 1 (standard normal distribution)
 q1_params = (0.5, 1.5)  # Slightly different parameters for Q1
 
 lambda_ = 0.5
-threshold = 2
+threshold = 3
 trials = 10000
 detect_success = 0
 
 for _ in tqdm(range(trials), desc="Processing"):
+    data_stream = np.random.randn(1000)  # Random data simulating pre-change scenario
     if(rscusum_TF(data_stream, p_infinity_params, q1_params, lambda_, threshold)):
         detect_success += 1
 print(f"Threshold = {threshold}, and FAR = {detect_success / trials}")
