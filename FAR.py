@@ -23,18 +23,18 @@ def rscusum_TF(data_stream, p_infinity_params, q1_params, lambda_, threshold):
     else:
         return False
     
+if __name__ == "__main__":
+    p_infinity_params = (0, 1)  # Mean 0, variance 1 (standard normal distribution)
+    q1_params = (0.5, 1.5)  # Slightly different parameters for Q1
 
-p_infinity_params = (0, 1)  # Mean 0, variance 1 (standard normal distribution)
-q1_params = (0.5, 1.5)  # Slightly different parameters for Q1
+    lambda_ = 0.5
+    threshold = 3
+    trials = 10000
+    detect_success = 0
 
-lambda_ = 0.5
-threshold = 3
-trials = 10000
-detect_success = 0
-
-for _ in tqdm(range(trials), desc="Processing"):
-    data_stream = np.random.randn(1000)  # Random data simulating pre-change scenario
-    if(rscusum_TF(data_stream, p_infinity_params, q1_params, lambda_, threshold)):
-        detect_success += 1
-print(f"Threshold = {threshold}, and FAR = {detect_success / trials}")
-print(f"Number of successful detection: {detect_success}")
+    for _ in tqdm(range(trials), desc="Processing"):
+        data_stream = np.random.randn(1000)  # Random data simulating pre-change scenario
+        if(rscusum_TF(data_stream, p_infinity_params, q1_params, lambda_, threshold)):
+            detect_success += 1
+    print(f"Threshold = {threshold}, and FAR = {detect_success / trials}")
+    print(f"Number of successful detection: {detect_success}")

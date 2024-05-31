@@ -1,9 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-
-def hyvarinen_score(X, mu, sigma):
-    """ Simplified Hyvärinen score for Gaussian distributed data. """
-    return -((X - mu) ** 2) / (2 * sigma ** 2) + 1 / sigma ** 2
+from utils import *
 
 def rscusum(data, mu_pre, sigma_pre, mu_post, sigma_post, lambda_, threshold):
     scores = []

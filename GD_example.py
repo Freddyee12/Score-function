@@ -26,15 +26,6 @@ def GD(x_start, df, epochs, lr):
         xs[i+1] = x    
     return xs
 
-def GDD(x_start, df, epochs, lr):
-    xs = np.zeros(epochs+1)
-    x = x_start
-    xs[0] = x
-    for i in range(epochs):
-        dx = df(x)
-        x -= dx*lr
-        xs[i+1] = x
-    return xs
 # Main
 # 起始權重
 x_start = 5    
@@ -43,7 +34,7 @@ epochs = 15
 # 學習率   
 lr = 0.3   
 # 梯度下降法 
-x = GDD(x_start, dfunc, epochs, lr=lr) 
+x = GD(x_start, dfunc, epochs, lr=lr) 
 print (x)
 # 輸出：[-5.     -2.     -0.8    -0.32   -0.128  -0.0512]
 
